@@ -1,0 +1,14 @@
+<h1><%= @user.name%>'s Profile Page</h1>
+<p>Username: <%= @user.username %></p>
+
+<h2>Recent Logs:</h2>
+
+<% @user.habit_logs.each do |hl| %>
+  <h3><%= hl.user_habit.habit.name %></h3>
+  <ul>
+  <li>Mood: <%= hl.mood %></li>
+  <li>Entry: <%= hl.entry %></li>
+  <li>Posted On <%= hl.created_at.to_date %></li>
+  </ul>
+<% end %>
+

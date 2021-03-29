@@ -1,0 +1,14 @@
+<h1>“Inside of me there are two dogs. One is mean and evil and the other is good and they fight each other all the time. When asked which one wins I answer, the one I feed the most.”</h1>
+
+<% if flash[:error]%>
+  <p style="color: red;"><%= flash[:error] %></p>
+<% end %>
+<%= form_for :session, url: "/login" do |f| %>
+  <%= f.label :username %><br>
+  <%= f.text_field :username %><br>
+
+  <%= f.label :password %><br>
+  <%= f.text_field :password %><br>
+
+  <%= f.submit %>
+<% end %>

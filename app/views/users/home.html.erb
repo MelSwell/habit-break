@@ -1,0 +1,31 @@
+<h1> Home - Dashboard </h1>
+<h2>Hello <%= @user.name %>!</h2>
+<h2>Your current habits:</h2>
+<ul>
+  <% @user.user_habits.each do |uh| %>
+    <li><%= link_to uh.habit.name, user_habit_path %></li>
+  <% end %>
+</ul>
+
+<h2>Your Followers:</h2>
+<% if @user.followers.any? %>
+  <ul>
+    <% @user.followers.each do |f| %>
+      <li><%= link_to f.name, user_path(f) %></li>
+    <% end%>
+  </ul>
+<% else %>
+  <p>You have no followers</p>
+<% end %>
+
+<h2>Your Followed Users:</h2>
+<% if @user.followees.any? %>
+  <ul>
+    <% @user.followees.each do |f| %>
+      <li><%= link_to f.name, user_path(f) %></li>
+    <% end%>
+  </ul>
+<% else %>
+ <p>You are not following anyone</p>
+<% end %>
+
