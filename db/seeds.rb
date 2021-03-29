@@ -7,9 +7,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 UserHabit.destroy_all
+Encouragement.destroy_all
 HabitLog.destroy_all
+Friendship.destroy_all
 User.destroy_all
 Habit.destroy_all
+
+UserHabit.reset_pk_sequence
+HabitLog.reset_pk_sequence
+Friendship.reset_pk_sequence
+User.reset_pk_sequence
+Encouragement.reset_pk_sequence
+Habit.reset_pk_sequence
 
 
 user1 = User.create(name: "Seth", username: "MelSwell", email: "s@s.com", password: "abc123") 
@@ -54,4 +63,10 @@ boolean = [true, false]
 
 100.times do
   HabitLog.create(user_habit_id: UserHabit.all.sample.id, mood: moods.sample, entry: Faker::Lorem.paragraph(sentence_count: 2), daily_goal_reached: boolean.sample )
+end
+
+Friendship.create(follower_id: User.first.id, followee_id: User.second.id)
+
+25.times do 
+  Encouragement.create(user_id: User.all.sample.id, habit_log_id: HabitLog.all.sample.id, comment: Faker::Lorem.paragraph(sentence_count: 2))
 end

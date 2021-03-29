@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_29_151215) do
+ActiveRecord::Schema.define(version: 2021_03_29_185030) do
 
   create_table "encouragements", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "user_habit_id"
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "habit_log_id"
   end
 
   create_table "friendships", force: :cascade do |t|
