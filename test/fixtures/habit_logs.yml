@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_habit: 
+  mood: MyString
+  entry: MyText
+  daily_goal_reached: false
+
+two:
+  user_habit: 
+  mood: MyString
+  entry: MyText
+  daily_goal_reached: false

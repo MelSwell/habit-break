@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  habit_id: 1
+  weekly_expenditure: 
+  default: 
+  longest_streak: 
+  default: MyString
+  0: MyString
+  daily_goal: MyText
+  target_days: 1
+  active: false
+
+two:
+  user_id: 1
+  habit_id: 1
+  weekly_expenditure: 
+  default: 
+  longest_streak: 
+  default: MyString
+  0: MyString
+  daily_goal: MyText
+  target_days: 1
+  active: false
