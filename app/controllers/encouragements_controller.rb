@@ -1,0 +1,3 @@
+class EncouragementsController < ApplicationController
+
+end
