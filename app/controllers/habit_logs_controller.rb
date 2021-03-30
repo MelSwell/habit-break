@@ -4,10 +4,13 @@ class HabitLogsController < ApplicationController
     @user_habit = UserHabit.find(params[:user_habit_id])
   end
 
+  def show
+    @habit_log = HabitLog.find(params[:id])
+  end
+
   def create
     @habit_log = HabitLog.create(habit_log_params)
     @user_habit = UserHabit.find(params[:habit_log][:user_habit_id])
-    
     if @habit_log.valid?
       redirect_to user_habit_path(@user_habit)
     else

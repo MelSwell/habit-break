@@ -1,0 +1,22 @@
+<h1><%= @habit_log.user_habit.habit.name %></h1>
+<ul>
+  <li>Mood: <%= @habit_log.mood %></li>
+  <li>Entry: <%= @habit_log.entry %></li>
+  <li>Reached Daily Goal: <%= @habit_log.daily_goal_reached %></li>
+  <li>Posted On <%= @habit_log.created_at.to_date %> @ <%= @habit_log.formatted_time %></li>
+</ul>
+<h3>Encouragements:</h3>
+<% if @habit_log.encouragements.any? %>
+  <% @habit_log.encouragements.each do |e| %>
+    <ul>
+      <li><%= e.user.username %>:</li>
+      <ul>
+        <li><%= e.comment %></li>
+        <li><%= e.created_at.to_date %> @ <%= e.formatted_time %></li>
+      </ul>
+    </ul>
+  <% end %>
+<% else %>
+  <%= "None at the moment" %>
+<% end %>
+<%= button_to "Encourage #{@habit_log.user_habit.user.name}", new_encouragement_path, params: {habit_log_id: @habit_log.id}, method: :get %>

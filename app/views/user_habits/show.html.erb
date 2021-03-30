@@ -1,10 +1,11 @@
 <h1><%= @user_habit.habit.name %></h1>
 <h3>Your Logs:</h3>
 <% @user_habit.habit_logs.each do |log| %>
-  <h3><%= log.user_habit.habit.name %></h3>
+  <h3><%= link_to log.user_habit.habit.name, habit_log_path(log) %></h3>
   <ul>
     <li>Mood: <%= log.mood %></li>
     <li>Entry: <%= log.entry %></li>
+    <li>Reached Daily Goal: <%= log.daily_goal_reached %></li>
     <li>Posted On <%= log.created_at.to_date %> @ <%= log.formatted_time %></li>
   </ul>
 <% end %>

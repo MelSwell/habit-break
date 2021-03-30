@@ -15,7 +15,7 @@
   <%= f.text_area :entry %><br>
 
   <%= f.label "Did You Reach Your Goal Today?" %><br>
-  <%= f.select :daily_goal_reached, options_for_select([['Yes', true], ['No', false]]) %><br>
+  <%= f.select :daily_goal_reached, options_for_select([['Yes', 1], ['No', 0]]) %><br>
 
   <%= f.hidden_field :user_habit_id, value: @user_habit.id %>
   <%= f.submit %>

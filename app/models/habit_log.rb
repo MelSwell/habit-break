@@ -1,7 +1,7 @@
 class HabitLog < ApplicationRecord
   belongs_to :user_habit
   has_many :encouragements
-  validates :entry, :mood, :daily_goal_reached, :user_habit_id, presence: true
+  validates :entry, :mood, :user_habit_id, presence: true
   validates :entry, length: {minimum: 20}
 
   def formatted_time
