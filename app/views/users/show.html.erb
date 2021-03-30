@@ -4,11 +4,12 @@
 <h2>Recent Logs:</h2>
 
 <% @user.habit_logs.each do |hl| %>
-  <h3><%= hl.user_habit.habit.name %></h3>
+  <h3><%= link_to hl.user_habit.habit.name, habit_log_path(hl) %></h3>
   <ul>
-  <li>Mood: <%= hl.mood %></li>
-  <li>Entry: <%= hl.entry %></li>
-  <li>Posted On <%= hl.created_at.to_date %> @ <%= hl.formatted_time %></li>
+    <li>Mood: <%= hl.mood %></li>
+    <li>Entry: <%= hl.entry %></li>
+    <li>Reached Daily Goal: <%= hl.daily_goal_reached %></li>
+    <li>Posted On <%= hl.created_at.to_date %> @ <%= hl.formatted_time %></li>
   </ul>
 <% end %>
 
