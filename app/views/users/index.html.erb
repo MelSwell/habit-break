@@ -1,0 +1,7 @@
+<h1>All Users on Habit Break:</h1>
+
+<% @users.each do |u|%>
+<ul>
+<%= link_to u.name, user_path(u) %>
+</ul>
+<% end %>
