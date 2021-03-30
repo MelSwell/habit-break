@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#login'
   get 'users/:id/home', to: 'users#home', as: 'user_home'
   resources :users 
-  resources :user_habits 
+  resources :user_habits
+  resources :habit_logs, only: [:new, :create, :edit, :update] 
 end

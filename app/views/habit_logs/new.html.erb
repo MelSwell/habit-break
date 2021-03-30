@@ -1,0 +1,22 @@
+<h1>New Log for <%= @user_habit.habit.name %></h1>
+<% if flash[:errors] %>
+  <ul>
+  <% flash[:errors].each do |msg|%>
+    <li style="color: red;"><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @habit_log do |f| %>
+  <%= f.label :mood %><br>
+  <%= f.text_field :mood %><br>
+
+  <%= f.label :entry %><br>
+  <%= f.text_area :entry %><br>
+
+  <%= f.label "Did You Reach Your Goal Today?" %><br>
+  <%= f.select :daily_goal_reached, options_for_select([['Yes', true], ['No', false]]) %><br>
+
+  <%= f.hidden_field :user_habit_id, value: @user_habit.id %>
+  <%= f.submit %>
+<% end %>
