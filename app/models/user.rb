@@ -8,4 +8,7 @@ class User < ApplicationRecord
   
   has_many :following_users, foreign_key: :followee_id, class_name: 'Friendship'
   has_many :followers, through: :following_users
+
+  validates :name, :username, :email, :password, presence: true
+  validates :username, :email, uniqueness: true
 end

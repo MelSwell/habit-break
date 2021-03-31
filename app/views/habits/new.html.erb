@@ -1,0 +1,37 @@
+<h1>Create a new habit to break!</h1>
+
+<% if flash[:errors] %>
+  <ul>
+  <% flash[:errors].each do |msg| %>
+    <li style="color: red;"><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @habit do |habit_form| %>
+  <%= habit_form.label :name %><br>
+  <%= habit_form.text_field :name %><br>
+
+  <%= habit_form.label :category %><br>
+  <%= habit_form.select :category, @categories %><br>
+
+    <%= fields_for :user_habits, @user_habit do |uh_field| %>
+      <%= uh_field.hidden_field :user_id, value: cookies[:user_id] %>
+      <%= uh_field.hidden_field :active, value: true %>
+
+      <%= uh_field.label "What is your daily goal for this habit?" %><br>
+      <%= uh_field.text_area :daily_goal %><br>
+
+      <%= uh_field.label "Weekly Expense (Optional)" %><br>
+      $<%= uh_field.number_field :weekly_expenditure, step: 0.25 %><br>
+
+      <%= uh_field.label "Set a goal for the number of days that you will work on breaking this habit:" %><br>
+      <%= uh_field.number_field :target_days %><br>
+    <% end %>
+    <%= habit_form.submit %>
+<% end %>
+
+
+
+
+

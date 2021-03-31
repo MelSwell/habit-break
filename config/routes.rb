@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'sessions#new_login'
   post '/login', to: 'sessions#login'
   get 'users/:id/home', to: 'users#home', as: 'user_home'
+  delete '/logout', to: 'sessions#logout'
   resources :users 
   resources :user_habits
   resources :habit_logs, only: [:new, :create, :edit, :update]
@@ -11,4 +12,5 @@ Rails.application.routes.draw do
   resources :habit_logs, only: [:new, :create, :edit, :update, :show] 
 
   resources :encouragements, only: [:new, :create]
+  resources :habits
 end

@@ -8,7 +8,9 @@
   <%= f.text_field :username %><br>
 
   <%= f.label :password %><br>
-  <%= f.text_field :password %><br>
+  <%= f.password_field :password %><br>
 
-  <%= f.submit %>
+  <%= f.submit "Sign In" %>
 <% end %>
+<p><strong>- OR -</strong><p><br>
+<%= button_to "Register", new_user_path, method: :get %>

@@ -1,5 +1,7 @@
 <h1> Home - Dashboard </h1>
 <h2>Hello <%= @user.name %>!</h2>
+<%= button_to "Create a new Habit to Associate Yourself With", new_habit_path, method: :get %>
+<%= button_to "Select a Pre-Existing Habit to Associate Yourself With", new_user_habit_path, method: :get %>
 <h2>Your current habits:</h2>
 <ul>
   <% @user.user_habits.each do |uh| %>
@@ -26,6 +28,6 @@
     <% end%>
   </ul>
 <% else %>
- <p>You are not following anyone</p>
+ <p>You are not following anyone</p>t
 <% end %>
 
