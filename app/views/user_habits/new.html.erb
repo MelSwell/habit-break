@@ -1,0 +1,44 @@
+<h1>Create a New Habit for Yourself</h1>
+
+<% if flash[:errors] %>
+  <ul>
+    <% flash[:errors].each do |msg| %>
+      <li style="color: red;"><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_tag user_habits_path, method: :post do %>
+  <%= hidden_field_tag :user_id, cookies[:user_id] %>
+  <%= hidden_field_tag :active, true %>
+  
+  <%= label_tag "Habits to choose from:" %><br>
+  <%= collection_select :habit_id, :habit_id, @habits, :id, :name, :include_blank => true %><br>
+   <p><strong>- OR -</strong></p>
+  <%= label_tag "New Custom Habit:"%><br>
+  <%= text_field_tag :habit_name %><br>
+   <br>
+  <%= label_tag "What category does your habit fall under?" %> <br> <%= "(Only select if creating a custom habit)"%><br>
+  <%= select_tag :category, options_for_select(@categories), :include_blank => true  %><br>
+  <br>
+  <br>
+  <br>
+  <%= label_tag "What is your daily goal in regards to this habit?" %><br>
+  <%= text_area_tag :daily_goal %><br>
+
+  <%= label_tag "Weekly Expense (optional)" %><br>
+  $<%= number_field_tag :weekly_expenditure, nil, :step => 0.25 %><br>
+
+  <%= label_tag "Set a goal for the number of days that you will work on this habit:" %><br>
+  <%= number_field_tag :target_days %><br>
+
+  <%= submit_tag "Create Your Habit" %>
+
+<% end %>
+
+
+
+
+
+
+
