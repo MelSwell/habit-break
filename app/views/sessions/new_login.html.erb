@@ -1,17 +1,22 @@
-<h1>HABIT BREAK</h1>
-<h2>“Inside of me there are two dogs. One is mean and evil and the other is good and they fight each other all the time. When asked which one wins I answer, the one I feed the most.”</h2>
+<div class="login-page">  
+  <h1 class="login-header">HABIT BREAK</h1>
+  <h2 class="login-quote">“Inside of me there are two dogs. One is mean and evil and the other is good and they fight each other all the time. When asked which one wins I answer, the one I feed the most.”</h2>
+  <div class="login-form">
+    <% if flash[:error]%>
+      <p style="color: red;"><%= flash[:error] %></p>
+    <% end %>
+    <%= form_for :session, url: "/login" do |f| %>
+      <%= f.label :username %><br>
+      <%= f.text_field :username %><br>
 
-<% if flash[:error]%>
-  <p style="color: red;"><%= flash[:error] %></p>
-<% end %>
-<%= form_for :session, url: "/login" do |f| %>
-  <%= f.label :username %><br>
-  <%= f.text_field :username %><br>
+      <%= f.label :password %><br>
+      <%= f.password_field :password %><br>
 
-  <%= f.label :password %><br>
-  <%= f.password_field :password %><br>
-
-  <%= f.submit "Sign In" %>
-<% end %>
-<p><strong>- OR -</strong><p><br>
-<%= button_to "Register", new_user_path, method: :get %>
+    <div class="login-button">
+      <%= f.submit "Sign In" %>
+    <% end %>
+    <p><strong>- OR -</strong></p>
+    </div>
+    <%= button_to "Register", new_user_path, method: :get %>
+  </div>  
+</div>  
