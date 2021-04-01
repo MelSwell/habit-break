@@ -2,6 +2,6 @@
 
 <% @users.each do |u|%>
 <ul>
-<%= link_to u.name, user_path(u) %>
+<%= link_to u.name, user_path(u) %>, Habit Count: <%= u.user_habits.count%> 
 </ul>
 <% end %>

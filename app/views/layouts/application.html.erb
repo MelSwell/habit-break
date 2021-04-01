@@ -13,6 +13,7 @@
   <br>
   <br>
   <%= link_to "Users", users_path %>
+  <%= link_to "Habits", habits_path%>
   <% if cookies[:user_id] %>
     <%= link_to "Dashboard", user_home_path(cookies[:user_id]) %>
     <%= link_to "Manage Account", edit_user_path(cookies[:user_id]) %>  
