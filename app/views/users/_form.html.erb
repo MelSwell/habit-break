@@ -6,7 +6,7 @@
   </ul>
 <% end %>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => {:class => 'page-form'} do |f| %>
   <%= f.label :name %><br>
   <%= f.text_field :name %><br>
 

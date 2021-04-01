@@ -1,5 +1,7 @@
 <div class="login-page">  
-  <h2 class="login-quote">“Inside of me there are two dogs. One is mean and evil and the other is good and they fight each other all the time. When asked which one wins I answer, the one I feed the most.”</h2>
+  <h2 class="login-quote">“Inside of me there are two dogs. One is mean and evil and the other is good, and they fight each other all the time. When asked which one wins I answer, the one I feed the most.”</h2>
+  <h3>-<i>Sitting Bull</i></h3>
+  <h4 class="login-quote">Feed the Good Dog!</h4>
   <div class="login-form">
     <% if flash[:error]%>
       <p style="color: red;"><%= flash[:error] %></p>
@@ -12,10 +14,10 @@
       <%= f.password_field :password %><br>
 
       <div class="login-button">
-        <%= f.submit "Sign In" %>
+        <%= f.submit "Sign In", class: "login-button" %>
       </div>
     <% end %>
     <p><strong>- OR -</strong></p>
-    <%= button_to "Register", new_user_path, method: :get %>
+    <%= button_to "Register", new_user_path, method: :get, class: "login-button" %>
   </div>  
 </div>  
