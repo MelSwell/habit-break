@@ -15,6 +15,7 @@ Meet those habit breakers below:
 <% @specific_logs.each do |log| %>
 <h3><%= link_to "Log Entry", habit_log_path(log) %></h3>
 <ul>
+  <li>Posted by: <%= link_to log.user_habit.user.name, user_path(log.user_habit.user) %></li>
   <li>Mood: <%= log.mood %></li>
   <li>Entry: <%= log.entry %></li>
   <li>Reached Daily Goal: <%= log.daily_goal_reached %></li>
