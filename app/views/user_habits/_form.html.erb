@@ -1,0 +1,27 @@
+<% if flash[:errors] %>
+  <ul>
+    <% flash[:errors].each do |msg| %>
+      <li style="color: red;"><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @user_habit do |f| %>
+  <%= f.hidden_field :user_id, value: cookies[:user_id].to_i %>
+  <%= f.hidden_field :active, value: true %>
+  
+  <%= f.label "Habits to choose from:" %><br>
+  <%= f.collection_select :habit_id, @habits, :id, :name %><br>
+   
+  <%= f.label "What is your daily goal for this habit?" %><br>
+  <%= f.text_area :daily_goal %><br>
+
+  <%= f.label "Weekly Expense (optional)" %><br>
+  $<%= f.number_field :weekly_expenditure, :step => 0.25 %><br>
+
+  <%= f.label "Set a goal for the number of days that you will work on this habit:" %><br>
+  <%= f.number_field :target_days %><br>
+
+  <%= f.submit "Create Your Habit" %>
+
+<% end %>

@@ -19,14 +19,6 @@ class HabitLogsController < ApplicationController
     end
   end
 
-  def edit
-    @habit_log = HabitLog.find(params[:id])
-  end
-
-  def update
-
-  end
-
   private
 
   def habit_log_params

@@ -12,13 +12,33 @@ You are following this user
 
 <h2>Recent Logs:</h2>
 
-<% @user.habit_logs.each do |hl| %>
-  <h3><%= link_to hl.user_habit.habit.name, habit_log_path(hl) %></h3>
+<% @user.habit_logs.each do |log| %>
+  <h3><%= link_to log.user_habit.habit.name, habit_log_path(log) %></h3>
   <ul>
-    <li>Mood: <%= hl.mood %></li>
-    <li>Entry: <%= hl.entry %></li>
-    <li>Reached Daily Goal: <%= hl.daily_goal_reached %></li>
-    <li>Posted On <%= hl.created_at.to_date %> @ <%= hl.formatted_time %></li>
+    <li>Mood: <%= log.mood %></li>
+    <li>Entry: <%= log.entry %></li>
+    <li>Reached Daily Goal: <%= log.daily_goal_reached %></li>
+    <% if log.encouragements.count == 1 %>
+      <li><%= log.encouragements.count %> Encouragement</li>
+    <% elsif log.encouragements.count > 1 %>
+      <li><%= log.encouragements.count %> Encouragements</li>
+    <% end %>
+    <li>Posted On <%= log.created_at.to_date %> @ <%= log.formatted_time %></li>
+    <% if log.encouragements.any? %>
+      <% log.encouragements.each do |e| %>
+        <br>
+        <ul>
+          <li><%= e.user.username %>:</li>
+          <ul>
+            <li><%= e.comment %></li>
+            <li><%= e.created_at.to_date %> @ <%= e.formatted_time %></li>
+          </ul>
+          <% if e.user_id == cookies[:user_id].to_i %>
+            <%= button_to "Edit", edit_encouragement_path(e), method: :get %>
+          <% end %>
+        </ul>
+      <% end%>
+    <% end %>
   </ul>
 <% end %>
 

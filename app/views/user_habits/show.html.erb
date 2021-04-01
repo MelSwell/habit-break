@@ -3,6 +3,8 @@
   <h3>You're still working on this one. Keep up the great work!</h3>
   <h5>Click below if you have finished working on this habit:</h5>
   <%= button_to "Finish", toggle_active_path(@user_habit), method: :patch %>
+  <p><strong>- OR -</strong></p>
+  <%= button_to "Edit Habit", edit_user_habit_path, method: :get %>
 <% else %>
   <h3>You've deactivated this habit, great job!</h3>
   <h5>Click below to re-activate this habit:</h5>
@@ -31,6 +33,9 @@
             <li><%= e.comment %></li>
             <li><%= e.created_at.to_date %> @ <%= e.formatted_time %></li>
           </ul>
+          <% if e.user_id == cookies[:user_id].to_i %>
+            <%= button_to "Edit", edit_encouragement_path(e), method: :get %>
+          <% end %>
         </ul>
       <% end%>
     <% end %>

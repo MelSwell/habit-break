@@ -27,6 +27,21 @@ class UserHabitsController < ApplicationController
     redirect_to user_habit_path(@user_habit)
   end
 
+  def edit
+    @user_habit = UserHabit.find(params[:id])
+    @habits = Habit.all
+  end
+
+  def update
+    @user_habit = UserHabit.find(params[:id])
+    if @user_habit.update(user_habit_params)
+      redirect_to user_habit_path(@user_habit)
+    else
+      flash[:errors] = @user_habit.errors.full_messages
+      redirect_to new_user_habit_path
+    end
+  end
+
   private 
 
   def user_habit_params

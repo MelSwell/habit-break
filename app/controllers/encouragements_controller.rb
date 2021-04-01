@@ -14,6 +14,22 @@ class EncouragementsController < ApplicationController
     end
   end
 
+  def edit
+    @encouragement = Encouragement.find(params[:id])
+    @habit_log = HabitLog.find(@encouragement.habit_log_id)
+  end
+
+  def update
+    @encouragement = Encouragement.find(params[:id])
+
+    if @encouragement.update(encouragement_params)
+      redirect_to habit_log_path(@encouragement.habit_log_id)
+    else
+      flash[:errors] = @encouragement.errors.full_messages
+      redirect_back fallback_location: { action: "edit", habit_log_id: @encouragement.habit_log_id }
+    end
+  end
+
   private
 
   def encouragement_params

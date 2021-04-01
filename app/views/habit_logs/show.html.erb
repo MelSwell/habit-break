@@ -14,6 +14,9 @@
         <li><%= e.comment %></li>
         <li><%= e.created_at.to_date %> @ <%= e.formatted_time %></li>
       </ul>
+      <% if e.user_id == cookies[:user_id].to_i %>
+        <%= button_to "Edit", edit_encouragement_path(e), method: :get %>
+      <% end %>
     </ul>
   <% end %>
 <% else %>
