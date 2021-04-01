@@ -20,6 +20,13 @@ class UserHabitsController < ApplicationController
     end
   end
 
+  def toggle_active
+    @user_habit = UserHabit.find(params[:id])
+    @user_habit.toggle_active
+    @user_habit.save
+    redirect_to user_habit_path(@user_habit)
+  end
+
   private 
 
   def user_habit_params

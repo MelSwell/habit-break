@@ -1,12 +1,39 @@
-<h1><%= @user_habit.habit.name %></h1>
+<h1>Overview of your <%= @user_habit.habit.name %> habit</h1>
+<% if @user_habit.active %>
+  <h3>You're still working on this one. Keep up the great work!</h3>
+  <h5>Click below if you have finished working on this habit:</h5>
+  <%= button_to "Finish", toggle_active_path(@user_habit), method: :patch %>
+<% else %>
+  <h3>You've deactivated this habit, great job!</h3>
+  <h5>Click below to re-activate this habit:</h5>
+  <%= button_to "Start Again", toggle_active_path(@user_habit), method: :patch %>
+<% end %>
+<h3>Your Daily Goal: <%= @user_habit.daily_goal %></h3>
 <h3>Your Logs:</h3>
-<% @user_habit.habit_logs.each do |log| %>
+<% @user_habit.habit_logs.reverse.each do |log| %>
   <h3><%= link_to log.user_habit.habit.name, habit_log_path(log) %></h3>
   <ul>
     <li>Mood: <%= log.mood %></li>
     <li>Entry: <%= log.entry %></li>
     <li>Reached Daily Goal: <%= log.daily_goal_reached %></li>
+    <% if log.encouragements.count == 1 %>
+      <li><%= log.encouragements.count %> Encouragement</li>
+    <% elsif log.encouragements.count > 1 %>
+      <li><%= log.encouragements.count %> Encouragements</li>
+    <% end %>
     <li>Posted On <%= log.created_at.to_date %> @ <%= log.formatted_time %></li>
-  </ul>
+    <% if log.encouragements.any? %>
+      <% log.encouragements.each do |e| %>
+        <br>
+        <ul>
+          <li><%= e.user.username %>:</li>
+          <ul>
+            <li><%= e.comment %></li>
+            <li><%= e.created_at.to_date %> @ <%= e.formatted_time %></li>
+          </ul>
+        </ul>
+      <% end%>
+    <% end %>
+  </ul>  
 <% end %>
 <%= button_to "New Log Entry", new_habit_log_path, params: {user_habit_id: @user_habit.id}, method: :get %>

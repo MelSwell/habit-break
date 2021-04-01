@@ -11,4 +11,12 @@ class User < ApplicationRecord
 
   validates :name, :username, :email, :password, presence: true
   validates :username, :email, uniqueness: true
+
+  def active_user_habits
+    self.user_habits.where(active: true)
+  end
+
+  def inactive_user_habits
+    self.user_habits.where(active: false)
+  end
 end

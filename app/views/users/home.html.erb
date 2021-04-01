@@ -3,11 +3,26 @@
 <%= button_to "Create a new Habit to Associate Yourself With", new_habit_path, method: :get %>
 <%= button_to "Select a Pre-Existing Habit to Associate Yourself With", new_user_habit_path, method: :get %>
 <h2>Your current habits:</h2>
-<ul>
-  <% @user.user_habits.each do |uh| %>
-    <li><%= link_to uh.habit.name, user_habit_path(uh) %></li>
-  <% end %>
-</ul>
+<% if @user.active_user_habits.any? %>
+  <ul>
+    <% @user.active_user_habits.each do |uh| %>
+      <li><%= link_to uh.habit.name, user_habit_path(uh) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have no active habits at the moment. Way to go!</p>
+<% end %>
+
+<h2>Your past habits:</h2>
+<% if @user.inactive_user_habits.any? %>
+  <ul>
+    <% @user.inactive_user_habits.each do |uh| %>
+      <li><%= link_to uh.habit.name, user_habit_path(uh) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have no inactive habits at the moment. Keep on truckin'!</p>
+<% end %>
 
 <h2>Your Followers:</h2>
 <% if @user.followers.any? %>
@@ -17,7 +32,7 @@
     <% end%>
   </ul>
 <% else %>
-  <p>You have no followers</p>
+  <p>You have no followers at the moment</p>
 <% end %>
 
 <h2>Users You Follow:</h2>
@@ -28,6 +43,6 @@
     <% end%>
   </ul>
 <% else %>
- <p>You are not following anyone</p>
+ <p>You are not following anyone at the moment</p>
 <% end %>
 
