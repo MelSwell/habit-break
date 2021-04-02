@@ -30,6 +30,11 @@ class EncouragementsController < ApplicationController
     end
   end
 
+  def destroy
+    Encouragement.find(params[:id]).destroy
+    redirect_back fallback_location: { action: "home", user_home_path: cookies[:user_id].to_i }
+  end
+
   private
 
   def encouragement_params

@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   
   resources :habit_logs, only: [:new, :create, :edit, :update, :show] 
 
-  resources :encouragements, only: [:new, :create, :edit, :update]
+  resources :encouragements, only: [:new, :create, :edit, :update, :destroy]
   resources :habits
 end

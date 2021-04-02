@@ -1,7 +1,7 @@
 
 <div class="stack-flex">
   <div class="cards">
-    <h3><%= @habit_log.user_habit.user.name %></h3>
+    <h3><%= link_to @habit_log.user_habit.user.name, user_path(@habit_log.user_habit.user.id) %></h3>
     <h1><%= @habit_log.user_habit.habit.name %></h1>
     <p>Mood: <%= @habit_log.mood %></p>
     <p>Entry: <%= @habit_log.entry %></p>
@@ -17,6 +17,7 @@
             <p><%= e.created_at.to_date %> @ <%= e.formatted_time %></p>
           <% if e.user_id == cookies[:user_id].to_i %>
             <%= button_to "Edit", edit_encouragement_path(e), method: :get, class: "button" %>
+            <%= button_to "Delete", "/encouragements/#{e.id}", method: :delete, class: "button" %>
           <% end %>
           _____________________
       <% end %>
