@@ -4,9 +4,9 @@
   <p>Username: <%= @user.username %></p>
   <% if @friendships.include?(cookies[:user_id].to_i) %>
     <p>You are following this user</p>
-    <%= button_to "Unfollow #{@user.name}", "/friendships/#{@friendship_id}", params: {followee_id: @user.id}, method: :delete  %>
+    <%= button_to "Unfollow #{@user.name}", "/friendships/#{@friendship_id}", params: {followee_id: @user.id}, method: :delete, class: "button"  %>
   <% else %>
-    <%= button_to "Follow #{@user.name}", '/friendships', params: {followee_id: @user.id} %>
+    <%= button_to "Follow #{@user.name}", '/friendships', params: {followee_id: @user.id}, class: "button" %>
   <% end %>
 </div>
 
@@ -26,7 +26,7 @@
       <% end %>
       <p>Posted On <%= log.created_at.to_date %> @ <%= log.formatted_time %></p>
       <div class="encouragements-list">
-      <% if log.encouragements.any? %>
+        <% if log.encouragements.any? %>
           <% log.encouragements.each do |e| %>
             <p><%= e.user.username %>:</p>
             <p><%= e.comment %></p>
@@ -37,6 +37,7 @@
           <% end%>
         <% end %>
       </div>
+      <%= button_to "Encourage #{log.user_habit.user.name}", new_encouragement_path, params: {habit_log_id: log.id}, method: :get, class: "button" %>
     </div> 
   <% end %>
 </div>

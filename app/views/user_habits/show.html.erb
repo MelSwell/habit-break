@@ -1,44 +1,52 @@
-<h1 class="page-header">Overview of your <%= @user_habit.habit.name %> habit</h1>
-<% if @user_habit.active %>
-  <h3>You're still working on this one. Keep up the great work!</h3>
-  <h5>Click below if you have finished working on this habit:</h5>
-  <%= button_to "Finish", toggle_active_path(@user_habit), method: :patch %>
-  <p><strong>- OR -</strong></p>
-  <%= button_to "Edit Habit", edit_user_habit_path, method: :get %>
-<% else %>
-  <h3>You've deactivated this habit, great job!</h3>
-  <h5>Click below to re-activate this habit:</h5>
-  <%= button_to "Start Again", toggle_active_path(@user_habit), method: :patch %>
-<% end %>
-<h3>Your Daily Goal: <%= @user_habit.daily_goal %></h3>
-<h3>Your Logs:</h3>
-<% @user_habit.habit_logs.reverse.each do |log| %>
-  <h3><%= link_to log.user_habit.habit.name, habit_log_path(log) %></h3>
-  <ul>
-    <li>Mood: <%= log.mood %></li>
-    <li>Entry: <%= log.entry %></li>
-    <li>Reached Daily Goal: <%= log.daily_goal_reached %></li>
-    <% if log.encouragements.count == 1 %>
-      <li><%= log.encouragements.count %> Encouragement</li>
-    <% elsif log.encouragements.count > 1 %>
-      <li><%= log.encouragements.count %> Encouragements</li>
-    <% end %>
-    <li>Posted On <%= log.created_at.to_date %> @ <%= log.formatted_time %></li>
-    <% if log.encouragements.any? %>
-      <% log.encouragements.each do |e| %>
-        <br>
-        <ul>
-          <li><%= e.user.username %>:</li>
-          <ul>
-            <li><%= e.comment %></li>
-            <li><%= e.created_at.to_date %> @ <%= e.formatted_time %></li>
-          </ul>
-          <% if e.user_id == cookies[:user_id].to_i %>
-            <%= button_to "Edit", edit_encouragement_path(e), method: :get %>
-          <% end %>
-        </ul>
-      <% end%>
-    <% end %>
-  </ul>  
-<% end %>
-<%= button_to "New Log Entry", new_habit_log_path, params: {user_habit_id: @user_habit.id}, method: :get %>
+<div class="page-header">
+  <h1>Overview of your <i>"<%= @user_habit.habit.name %>"</i> habit</h1>
+  <h3>Your Daily Goal: <%= @user_habit.daily_goal %></h3>
+  <% if @user_habit.active %>
+    <h3>You're still working on this one. Keep up the great work!</h3>
+    <h5>Click below if you have finished working on this habit:</h5>
+    <%= button_to "Finish", toggle_active_path(@user_habit), method: :patch, class: "button" %>
+    <p><strong>- OR -</strong></p>
+    <%= button_to "Edit Habit", edit_user_habit_path, method: :get, class: "button" %>
+  <% else %>
+    <h3>You've deactivated this habit, great job!</h3>
+    <h5>Click below to re-activate this habit:</h5>
+    <%= button_to "Start Again", toggle_active_path(@user_habit), method: :patch, class: "button" %>
+  <% end %>
+</div>
+
+<div class="div-text-align-center">  
+  <h3>Your Logs:</h3>
+  <%= button_to "New Log Entry", new_habit_log_path, params: {user_habit_id: @user_habit.id}, method: :get, class: "button" %>
+</div>  
+
+<div class="stack-flex">
+  <% @user_habit.habit_logs.reverse.each do |log| %>
+    <div class="cards">  
+      <h3><%= link_to log.user_habit.habit.name, habit_log_path(log) %></h3>
+    
+      <p>Mood: <%= log.mood %><p>
+      <p>Entry: <%= log.entry %></p>
+      <p>Reached Daily Goal: <%= log.daily_goal_reached %></p>
+      <% if log.encouragements.count == 1 %>
+        <p><%= log.encouragements.count %> Encouragement</p>
+      <% elsif log.encouragements.count > 1 %>
+        <p><%= log.encouragements.count %> Encouragements</p>
+      <% end %>
+      <p>Posted On <%= log.created_at.to_date %> @ <%= log.formatted_time %></p>
+    
+      <div class="encouragements-list">
+        <% if log.encouragements.any? %>
+          <% log.encouragements.each do |e| %>
+            <p><%= e.user.username %>:</p>
+            <p><%= e.comment %></p>
+            <p><%= e.created_at.to_date %> @ <%= e.formatted_time %></p>
+            <% if e.user_id == cookies[:user_id].to_i %>
+              <%= button_to "Edit", edit_encouragement_path(e), method: :get, class: "button" %>
+            <% end %>
+          <% end%>
+        <% end %>
+      </div>
+      <%= button_to "Add Comment", new_encouragement_path, params: {habit_log_id: log.id}, method: :get, class: "button" %>
+    </div>
+  <% end %>
+</div>  

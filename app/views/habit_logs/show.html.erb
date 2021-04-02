@@ -1,6 +1,7 @@
 
 <div class="stack-flex">
   <div class="cards">
+    <h3><%= @habit_log.user_habit.user.name %></h3>
     <h1><%= @habit_log.user_habit.habit.name %></h1>
     <p>Mood: <%= @habit_log.mood %></p>
     <p>Entry: <%= @habit_log.entry %></p>

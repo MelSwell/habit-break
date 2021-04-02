@@ -12,6 +12,7 @@
   <body>
       <nav>
         <div class="nav-left">
+          <img src="https://t3.ftcdn.net/jpg/01/31/13/90/360_F_131139051_4Shzq0WLcq6I9kbayR5B2dlL3NnuXErS.jpg" width="50" height="50" >
           <% if cookies[:user_id] %>
             <% @user = User.find(cookies[:user_id].to_i) %>
             <p><%= @user.name %></p>

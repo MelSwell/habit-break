@@ -52,6 +52,7 @@
   }
   
 nav{
+  padding-top: 5px;
   position: fixed;
   width: 100%;
   margin-top: -8px;
@@ -63,9 +64,14 @@ nav{
   box-shadow: -10px 4px 4px -2px gray;
 }
 
+.nav-left > img {
+  padding-right: 7px;
+}
+
 
 
 .nav-left{
+  display: inline-flex;
   margin-right: auto;
   padding-left: 25px;
 }
@@ -155,7 +161,8 @@ main {
 
 
 .cards > p{
-  line-height: 5px;
+  text-align: center;
+  line-height: 20px;
 }
 
 .button{

@@ -1,22 +1,25 @@
-<h1>New Log for <%= @user_habit.habit.name %></h1>
-<% if flash[:errors] %>
-  <ul>
-  <% flash[:errors].each do |msg|%>
-    <li style="color: red;"><%= msg %></li>
+<h1 class="page-header">New Log for <%= @user_habit.habit.name %></h1>
+<div class="div-text-align-center">  
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |msg|%>
+      <p style="color: red;"><%= msg %></p>
+    <% end %>
   <% end %>
-  </ul>
-<% end %>
+</div>  
+<div class="form-flex">
+  <div class="cards">
+    <%= form_for @habit_log do |f| %>
+      <%= f.label :mood %><br>
+      <%= f.text_field :mood %><br>
 
-<%= form_for @habit_log do |f| %>
-  <%= f.label :mood %><br>
-  <%= f.text_field :mood %><br>
+      <%= f.label :entry %><br>
+      <%= f.text_area :entry %><br>
 
-  <%= f.label :entry %><br>
-  <%= f.text_area :entry %><br>
+      <%= f.label "Did You Reach Your Goal Today?" %><br>
+      <%= f.select :daily_goal_reached, options_for_select([['Yes', 1], ['No', 0]]) %><br>
 
-  <%= f.label "Did You Reach Your Goal Today?" %><br>
-  <%= f.select :daily_goal_reached, options_for_select([['Yes', 1], ['No', 0]]) %><br>
-
-  <%= f.hidden_field :user_habit_id, value: @user_habit.id %>
-  <%= f.submit %>
-<% end %>
+      <%= f.hidden_field :user_habit_id, value: @user_habit.id %>
+      <%= f.submit "Submit", class: "button" %>
+    <% end %>
+  </div>
+</div>    

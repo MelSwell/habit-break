@@ -1,10 +1,11 @@
-<% if flash[:errors] %>
-  <ul>
+<div class="div-text-align-center">
+  <% if flash[:errors] %>
     <% flash[:errors].each do |msg| %>
-      <li style="color: red;"><%= msg %></li>
+      <p style="color: red;"><%= msg %></p>
     <% end %>
-  </ul>
-<% end %>
+  <% end %>
+</div>
+
 <div class="form-flex">
   <div class="cards">
     <%= form_for @user, :html => {:class => 'page-form'} do |f| %>

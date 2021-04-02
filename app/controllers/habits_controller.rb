@@ -11,7 +11,7 @@ class HabitsController < ApplicationController
 
   def show
     @habit = Habit.find(params[:id])
-    @users_of_habit = @habit.users.sort_by{ |u| u.name }
+    @users_of_habit = @habit.users.sort_by{ |u| u.name.downcase }
     @specific_logs  = @habit.habit_logs.reverse
   end 
 
