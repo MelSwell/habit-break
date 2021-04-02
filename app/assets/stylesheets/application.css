@@ -90,7 +90,7 @@ div.nav-right > a:visited {
 }
 
 main {
-  margin: 100px;
+  margin: 125px;
 }
 
 .login-page {
@@ -113,6 +113,7 @@ main {
 }
 
 .login-button{
+  margin: 3px 0 3px 0;
   border-radius: 30px;
 }
 
@@ -126,14 +127,20 @@ main {
   border-radius: 30px;
 }
 
-.dashboard-flex{
+.page-flex{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
-.dashboard-cards{
+.stack-flex{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cards{
   width: 45%;
   border: 2px solid black;
   border-radius: 30px;
@@ -142,29 +149,48 @@ main {
   flex-direction: column;
   margin-top: 10px;
   padding-top: 10px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
 }
 
-.dashboard-cards > p{
+
+.cards > p{
   line-height: 5px;
 }
 
-.dashboard-past-habits{
-  width: 45%;
-  border: 2px solid black;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 10px;
-  padding-top: 10px;
-}
-
 .button{
+  margin-top: 3px;
   border-radius: 30px;
   background-color: rgba(0, 101, 40, 0.858);
-  color: white
+  color: white; 
 }
 
 .button:hover{
   cursor: pointer;
+}
+
+.form-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.page-form{
+  text-align: center;
+}
+
+.div-text-align-center{
+  text-align: center;
+}
+
+.encouragements-list{
+  width: 75%;
+  border: 2px solid black;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10px;
+  padding-top: 10px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
 }

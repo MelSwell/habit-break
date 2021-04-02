@@ -1,32 +1,40 @@
-<h1>Habit: </h1>
-<h2><%= @habit.name.upcase %></h2>
-<h3>Category: <%= @habit.category.upcase %></h3>
+<div class="page-header">  
+  <h1>Habit: </h1>
+  <h2><%= @habit.name.upcase %></h2>
+  <h3>Category: <%= @habit.category.upcase %></h3>
+</div>  
 
-<%= @habit.users.length %> user(s) are breaking this habit right now!<br>
-Meet those habit breakers below:
+<div class="div-text-align-center">
+  <p><%= @habit.users.length %> user(s) are breaking this habit right now!<br></p>
+  <p>Meet those habit breakers below:</p>
 
-<% @users_of_habit.each do |u| %>
-<ul>
-<%= link_to u.name, user_path(u)%>
-</ul>
-<% end %>
+  <% @users_of_habit.each do |u| %>
+      <p><%= link_to u.name, user_path(u)%></p>
+  <% end %>
+<div>  
 
-<h2>Habit Activity:</h2>
-<% @specific_logs.each do |log| %>
-<h3><%= link_to "Log Entry", habit_log_path(log) %></h3>
-<ul>
-  <li>Posted by: <%= link_to log.user_habit.user.name, user_path(log.user_habit.user) %></li>
-  <li>Mood: <%= log.mood %></li>
-  <li>Entry: <%= log.entry %></li>
-  <li>Reached Daily Goal: <%= log.daily_goal_reached %></li>
-  <li>Posted On <%= log.created_at.to_date %> @ <%= log.formatted_time %></li>
-<% if log.encouragements.count == 1 %>
-      <li><%= log.encouragements.count %> Encouragement</li>
+<div class="page-header">
+  <h2>Habit Activity:</h2>
+</div> 
+
+<div class="stack-flex">
+  <% @specific_logs.each do |log| %>
+  <div class="cards">
+    <h3>Habit Log</h3>
+    <p>Entry: <%= log.entry %></p>
+    <p>Mood: <%= log.mood %></p>
+    <p>Reached Daily Goal: <%= log.daily_goal_reached %></p>
+    <p>Posted by: <%= link_to log.user_habit.user.name, user_path(log.user_habit.user) %></p>
+    <p>Posted On <%= log.created_at.to_date %> @ <%= log.formatted_time %></p>
+    <% if log.encouragements.count == 1 %>
+      <p><%= log.encouragements.count %> Encouragement</p>
     <% elsif log.encouragements.count > 1 %>
-      <li><%= log.encouragements.count %> Encouragements</li>
+      <p><%= log.encouragements.count %> Encouragements</p>
     <% end %>
-</ul>
-<% end %>
+    <h5><%= link_to "View Log", habit_log_path(log) %></h5>
+  </div>  
+  <% end %>
+</div>
 
 
 

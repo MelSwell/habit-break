@@ -3,8 +3,8 @@
   <h2>Hello <%= @user.name %>!</h2>
 </div>
 
-<div class="dashboard-flex">  
-  <div class="dashboard-cards">
+<div class="page-flex">  
+  <div class="cards">
     <%= button_to "Select a Pre-Existing Habit to Associate Yourself With", new_user_habit_path, method: :get, class: "button" %>
     <p><strong>- OR -</strong></p>
     <%= button_to "Create a new Habit to Associate Yourself With", new_habit_path, method: :get, class: "button" %>
@@ -18,7 +18,7 @@
     <% end %>
   </div>
 
-  <div class="dashboard-cards">
+  <div class="cards">
     <h2>Your Followers:</h2>
     <% if @user.followers.any? %>
         <% @user.followers.each do |f| %>
@@ -29,7 +29,7 @@
     <% end %>
   </div>
 
-  <div class="dashboard-cards">
+  <div class="cards">
     <h2>Your past habits:</h2>
     <% if @user.inactive_user_habits.any? %>
         <% @user.inactive_user_habits.each do |uh| %>
@@ -40,7 +40,7 @@
     <% end %>
   </div>
 
-  <div class="dashboard-cards">
+  <div class="cards">
     <h2>Users You Follow:</h2>
     <% if @user.followees.any? %>
         <% @user.followees.each do |f| %>

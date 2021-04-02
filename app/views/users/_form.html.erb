@@ -5,20 +5,23 @@
     <% end %>
   </ul>
 <% end %>
+<div class="form-flex">
+  <div class="cards">
+    <%= form_for @user, :html => {:class => 'page-form'} do |f| %>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %><br>
 
-<%= form_for @user, :html => {:class => 'page-form'} do |f| %>
-  <%= f.label :name %><br>
-  <%= f.text_field :name %><br>
+      <%= f.label :username %><br>
+      <%= f.text_field :username %><br>
 
-  <%= f.label :username %><br>
-  <%= f.text_field :username %><br>
+      <%= f.label :email %><br>
+      <%= f.text_field :email %><br>
 
-  <%= f.label :email %><br>
-  <%= f.text_field :email %><br>
+      <%= f.label :password %><br>
+      <%= f.password_field :password %><br>
 
-  <%= f.label :password %><br>
-  <%= f.password_field :password %><br>
-
-  <%= f.submit %>
+    <%= f.submit "Submit", :class => 'button' %>
+  </div>
+</div>    
   
 <% end %>

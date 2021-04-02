@@ -1,44 +1,42 @@
-<h1><%= @user.name%>'s Profile Page</h1>
-<p>Username: <%= @user.username %></p>
+<h1 class="page-header"><%= @user.name%>'s Profile Page</h1>
 
+<div class="div-text-align-center">
+  <p>Username: <%= @user.username %></p>
+  <% if @friendships.include?(cookies[:user_id].to_i) %>
+    <p>You are following this user</p>
+    <%= button_to "Unfollow #{@user.name}", "/friendships/#{@friendship_id}", params: {followee_id: @user.id}, method: :delete  %>
+  <% else %>
+    <%= button_to "Follow #{@user.name}", '/friendships', params: {followee_id: @user.id} %>
+  <% end %>
+</div>
 
-<% if @friendships.include?(cookies[:user_id].to_i) %>
-  <p>You are following this user</p>
-  <%= button_to "Unfollow #{@user.name}", "/friendships/#{@friendship_id}", params: {followee_id: @user.id}, method: :delete  %>
-<% else %>
-  <%= button_to "Follow #{@user.name}", '/friendships', params: {followee_id: @user.id} %>
-<% end %>
+<h2 class="page-header">Recent Logs:</h2>
 
-
-<h2>Recent Logs:</h2>
-
-<% @user.habit_logs.each do |log| %>
-  <h3><%= link_to log.user_habit.habit.name, habit_log_path(log) %></h3>
-  <ul>
-    <li>Mood: <%= log.mood %></li>
-    <li>Entry: <%= log.entry %></li>
-    <li>Reached Daily Goal: <%= log.daily_goal_reached %></li>
-    <% if log.encouragements.count == 1 %>
-      <li><%= log.encouragements.count %> Encouragement</li>
-    <% elsif log.encouragements.count > 1 %>
-      <li><%= log.encouragements.count %> Encouragements</li>
-    <% end %>
-    <li>Posted On <%= log.created_at.to_date %> @ <%= log.formatted_time %></li>
-    <% if log.encouragements.any? %>
-      <% log.encouragements.each do |e| %>
-        <br>
-        <ul>
-          <li><%= e.user.username %>:</li>
-          <ul>
-            <li><%= e.comment %></li>
-            <li><%= e.created_at.to_date %> @ <%= e.formatted_time %></li>
-          </ul>
-          <% if e.user_id == cookies[:user_id].to_i %>
-            <%= button_to "Edit", edit_encouragement_path(e), method: :get %>
-          <% end %>
-        </ul>
-      <% end%>
-    <% end %>
-  </ul>
-<% end %>
-
+<div class="stack-flex">
+  <% @user.habit_logs.each do |log| %>
+    <div class="cards">
+      <h3><%= link_to log.user_habit.habit.name, habit_log_path(log) %></h3>
+      <p>Mood: <%= log.mood %></p>
+      <p>Entry: <%= log.entry %></p>
+      <p>Reached Daily Goal: <%= log.daily_goal_reached %></p>
+      <% if log.encouragements.count == 1 %>
+        <p><%= log.encouragements.count %> Encouragement</p>
+      <% elsif log.encouragements.count > 1 %>
+        <p><%= log.encouragements.count %> Encouragements</p>
+      <% end %>
+      <p>Posted On <%= log.created_at.to_date %> @ <%= log.formatted_time %></p>
+      <div class="encouragements-list">
+      <% if log.encouragements.any? %>
+          <% log.encouragements.each do |e| %>
+            <p><%= e.user.username %>:</p>
+            <p><%= e.comment %></p>
+            <p><%= e.created_at.to_date %> @ <%= e.formatted_time %></p>
+            <% if e.user_id == cookies[:user_id].to_i %>
+              <%= button_to "Edit", edit_encouragement_path(e), method: :get, class: "button" %>
+            <% end %>
+          <% end%>
+        <% end %>
+      </div>
+    </div> 
+  <% end %>
+</div>
