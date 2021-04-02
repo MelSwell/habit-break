@@ -21,14 +21,14 @@ Encouragement.reset_pk_sequence
 Habit.reset_pk_sequence
 
 
-user1 = User.create(name: "Seth", username: "MelSwell", email: "s@s.com", password: "abc123") 
-user2 = User.create(name: "Henry", username: "HankPVel", email: "h@h.com", password: "abc123") 
-user3 = User.create(name: "Tess", username: "Tess15", email: "t@t.com", password: "abc123") 
-user4 = User.create(name: "Tim", username: "DiceyFitz", email: "tim@t.com", password: "abc123") 
-user5 = User.create(name: "Greg", username: "DWire", email: "g@g.com", password: "abc123") 
+user1 = User.create(name: "Seth", username: "MelSwell", email: "s@s.com", password: "abc123", image_url: Faker::Avatar.image) 
+user2 = User.create(name: "Henry", username: "HankPVel", email: "h@h.com", password: "abc123", image_url: Faker::Avatar.image) 
+user3 = User.create(name: "Tess", username: "Tess15", email: "t@t.com", password: "abc123", image_url: Faker::Avatar.image) 
+user4 = User.create(name: "Tim", username: "DiceyFitz", email: "tim@t.com", password: "abc123", image_url: Faker::Avatar.image) 
+user5 = User.create(name: "Greg", username: "DWire", email: "g@g.com", password: "abc123", image_url: Faker::Avatar.image) 
 
 100.times do
-  User.create(name: Faker::Name.name, username: Faker::Internet.unique.username, email: Faker::Internet.unique.safe_email, password: "abc123")
+  User.create(name: Faker::Name.name, username: Faker::Internet.unique.username, email: Faker::Internet.unique.safe_email, password: "abc123", image_url: Faker::Avatar.unique.image)
 end
 
 

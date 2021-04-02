@@ -9,7 +9,7 @@
   <p>Meet those habit breakers below:</p>
 
   <% @users_of_habit.each do |u| %>
-      <p><%= link_to u.name, user_path(u)%></p>
+      <p><img src="<%= u.image_url %>" height=30 width=30><%= link_to u.name, user_path(u)%></p>
   <% end %>
 <div>  
 
@@ -20,11 +20,10 @@
 <div class="stack-flex">
   <% @specific_logs.each do |log| %>
   <div class="cards">
-    <h3>Habit Log</h3>
+    <p><img src="<%= log.user_habit.user.image_url %>" height=50 width=50><%= link_to log.user_habit.user.name, user_path(log.user_habit.user) %></p>
     <p>Entry: <%= log.entry %></p>
     <p>Mood: <%= log.mood %></p>
     <p>Reached Daily Goal: <%= log.daily_goal_reached %></p>
-    <p>Posted by: <%= link_to log.user_habit.user.name, user_path(log.user_habit.user) %></p>
     <p>Posted On <%= log.created_at.to_date %> @ <%= log.formatted_time %></p>
     <% if log.encouragements.count == 1 %>
       <p><%= log.encouragements.count %> Encouragement</p>

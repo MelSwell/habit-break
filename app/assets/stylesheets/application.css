@@ -64,16 +64,20 @@ nav{
   box-shadow: -10px 4px 4px -2px gray;
 }
 
-.nav-left > img {
-  padding-right: 7px;
+
+.nav-center{
+  display: flex;
+  align-items:center;
+  position: relative;
+  left: 129px;
+  bottom: 4px;
 }
-
-
 
 .nav-left{
   display: inline-flex;
   margin-right: auto;
-  padding-left: 25px;
+  padding-left: 5px;
+  position: relative;
 }
 
 div.nav-right > a {

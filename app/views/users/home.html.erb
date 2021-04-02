@@ -1,3 +1,6 @@
+<div class="div-text-align-center">  
+  <img src="<%= @user.image_url %>" height=200 width=200>
+</div> 
 <div class="page-header">  
   <h1>Habit Dashboard</h1>
   <h2>Hello <%= @user.name %>!</h2>
@@ -22,7 +25,7 @@
     <h2>Your Followers:</h2>
     <% if @user.followers.any? %>
         <% @user.followers.each do |f| %>
-          <p><%= link_to f.name, user_path(f) %></p>
+          <p><img src="<%= f.image_url %>" height=50 width=50><%= link_to f.name, user_path(f) %></p>
         <% end%>
     <% else %>
       <p>You have no followers at the moment</p>
@@ -44,7 +47,7 @@
     <h2>Users You Follow:</h2>
     <% if @user.followees.any? %>
         <% @user.followees.each do |f| %>
-          <p><%= link_to f.name, user_path(f) %></p>
+          <p><img src="<%= f.image_url %>" height=50 width=50><%= link_to f.name, user_path(f) %></p>
         <% end%>
     <% else %>
     <p>You are not following anyone at the moment</p>
@@ -57,7 +60,7 @@
 <div class="stack-flex">
   <% @user.followee_logs_sorted.each do |log| %>
     <div class="cards">
-      <h4><%= log.user_habit.user.name %></h4>
+      <h4><img src="<%= log.user_habit.user.image_url %>" height=50 width=50><%= link_to log.user_habit.user.name, user_path(log.user_habit.user) %></h4>
       <h3><%= link_to log.user_habit.habit.name, habit_log_path(log) %></h3>
         <p>Mood: <%= log.mood %></p>
         <p>Entry: <%= log.entry %></p>
@@ -72,7 +75,7 @@
         <div class="encouragements-list">
           <% if log.encouragements.any? %>
             <% log.encouragements.each do |e| %>
-              <p><%= e.user.username %>:</p>
+              <p><img src="<%= e.user.image_url %>" height=30 width=30><%= e.user.username %>:</p>
               <p><%= e.comment %></p>
               <p><%= e.created_at.to_date %> @ <%= e.formatted_time %></p>
               <% if e.user_id == cookies[:user_id].to_i %>

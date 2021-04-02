@@ -12,10 +12,16 @@
   <body>
       <nav>
         <div class="nav-left">
-          <img src="https://t3.ftcdn.net/jpg/01/31/13/90/360_F_131139051_4Shzq0WLcq6I9kbayR5B2dlL3NnuXErS.jpg" width="50" height="50" >
+          <img src="https://t3.ftcdn.net/jpg/01/31/13/90/360_F_131139051_4Shzq0WLcq6I9kbayR5B2dlL3NnuXErS.jpg" width="60" height="60" >
+          <%# if cookies[:user_id] %>
+            <%# @user = User.find(cookies[:user_id].to_i) %>
+            <%# <p>@user.name<img src="<%= @user.image_url" height=40 width=40></p> %> 
+          <%# end %>
+        </div>
+        <div class="nav-center">
           <% if cookies[:user_id] %>
             <% @user = User.find(cookies[:user_id].to_i) %>
-            <p><%= @user.name %></p>
+            <p><img src="<%= @user.image_url %>" height=25 width=25>Hello <%= @user.name %></p>
           <% end %>
         </div>
         <div class="nav-right">

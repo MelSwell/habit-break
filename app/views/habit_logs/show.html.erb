@@ -1,7 +1,7 @@
 
 <div class="stack-flex">
   <div class="cards">
-    <h3><%= link_to @habit_log.user_habit.user.name, user_path(@habit_log.user_habit.user.id) %></h3>
+    <h3><img src="<%= @habit_log.user_habit.user.image_url %>" height=50 width=50><%= link_to @habit_log.user_habit.user.name, user_path(@habit_log.user_habit.user.id) %></h3>
     <h1><%= @habit_log.user_habit.habit.name %></h1>
     <p>Mood: <%= @habit_log.mood %></p>
     <p>Entry: <%= @habit_log.entry %></p>
@@ -12,7 +12,7 @@
       <h3>Encouragements:</h3>
       <% if @habit_log.encouragements.any? %>
         <% @habit_log.encouragements.each do |e| %>
-          <p><%= e.user.username %>:</p>
+          <p><img src="<%= e.user.image_url %>" height=30 width=30><%= e.user.username %>:</p>
             <p><%= e.comment %></p>
             <p><%= e.created_at.to_date %> @ <%= e.formatted_time %></p>
           <% if e.user_id == cookies[:user_id].to_i %>

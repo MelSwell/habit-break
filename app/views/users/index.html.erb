@@ -1,7 +1,7 @@
 <h1 class="page-header">All Users on Habit Break:</h1>
 
 <% @users.each do |u|%>
-<ul>
-<%= link_to u.name, user_path(u) %>, Habit Count: <%= u.user_habits.count%> 
-</ul>
+  <ul>
+    <img src="<%= u.image_url %>" height=50 width=50> <%= link_to u.name, user_path(u) %>, Habit Count: <%= u.user_habits.count%> 
+  </ul>
 <% end %>
