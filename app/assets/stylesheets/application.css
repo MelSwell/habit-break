@@ -201,3 +201,8 @@ main {
   margin-bottom: 5px;
   padding-bottom: 5px;
 }
+
+.encouragements-list > p{
+  text-align: center;
+  line-height: 20px;
+}

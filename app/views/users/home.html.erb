@@ -50,6 +50,41 @@
     <p>You are not following anyone at the moment</p>
     <% end %>
   </div>
-</div>  
+</div>
+
+<h1 class="page-header">Followed Users Recent Activity:</h1>
+
+<div class="stack-flex">
+  <% @user.followee_logs_sorted.each do |log| %>
+    <div class="cards">
+      <h4><%= log.user_habit.user.name %></h4>
+      <h3><%= link_to log.user_habit.habit.name, habit_log_path(log) %></h3>
+        <p>Mood: <%= log.mood %></p>
+        <p>Entry: <%= log.entry %></p>
+        <p>Reached Daily Goal: <%= log.daily_goal_reached %></p>
+        <% if log.encouragements.count == 1 %>
+          <p><%= log.encouragements.count %> Encouragement</p>
+        <% elsif log.encouragements.count > 1 %>
+          <p><%= log.encouragements.count %> Encouragements</p>
+        <% end %>
+        <p>Posted On <%= log.created_at.to_date %> @ <%= log.formatted_time %></p>
+      
+        <div class="encouragements-list">
+          <% if log.encouragements.any? %>
+            <% log.encouragements.each do |e| %>
+              <p><%= e.user.username %>:</p>
+              <p><%= e.comment %></p>
+              <p><%= e.created_at.to_date %> @ <%= e.formatted_time %></p>
+              <% if e.user_id == cookies[:user_id].to_i %>
+                <%= button_to "Edit", edit_encouragement_path(e), method: :get, class: "button" %>
+              <% end %>
+              _____________________
+            <% end%>
+          <% end %>
+        </div>
+      <%= button_to "Add Comment", new_encouragement_path, params: {habit_log_id: log.id}, method: :get, class: "button" %>
+    </div>
+  <% end %>
+</div>
 
 

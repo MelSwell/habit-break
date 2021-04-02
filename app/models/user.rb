@@ -19,4 +19,17 @@ class User < ApplicationRecord
   def inactive_user_habits
     self.user_habits.where(active: false)
   end
+
+  def followee_logs_sorted
+    logs = []
+    self.followees.each do |followee|
+      followee.user_habits.each do |uh|
+        uh.habit_logs.each do |log| 
+          logs << log
+        end  
+      end
+    end
+    logs.sort { |log_a, log_b| log_b.created_at <=> log_a.created_at } 
+  end
+
 end

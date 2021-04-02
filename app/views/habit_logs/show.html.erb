@@ -12,16 +12,13 @@
       <h3>Encouragements:</h3>
       <% if @habit_log.encouragements.any? %>
         <% @habit_log.encouragements.each do |e| %>
-          <ul>
-            <li><%= e.user.username %>:</li>
-            <ul>
-              <li><%= e.comment %></li>
-              <li><%= e.created_at.to_date %> @ <%= e.formatted_time %></li>
-            </ul>
-            <% if e.user_id == cookies[:user_id].to_i %>
-              <%= button_to "Edit", edit_encouragement_path(e), method: :get, class: "button" %>
-            <% end %>
-          </ul>
+          <p><%= e.user.username %>:</p>
+            <p><%= e.comment %></p>
+            <p><%= e.created_at.to_date %> @ <%= e.formatted_time %></p>
+          <% if e.user_id == cookies[:user_id].to_i %>
+            <%= button_to "Edit", edit_encouragement_path(e), method: :get, class: "button" %>
+          <% end %>
+          _____________________
       <% end %>
     </div>
     <% else %>
